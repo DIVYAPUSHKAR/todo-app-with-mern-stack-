@@ -1,0 +1,36 @@
+<%- include("partials/header") %>
+    <div class="table-container">
+        <h2 class="todo-title">todo list</h2>
+        <div>
+            <a class="btn" href="/add-todo">add todo</a>
+        </div>
+        <br/>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Decription</th>
+                <th>updated at</th>
+                <th>Action</th>
+
+            </tr>
+            <tr>
+                <% for(let i = 0; i < todos.length; i++) { %>
+                    <tr>
+                      <td><%= todos[i].title %></td>
+                      <td><%= todos[i].desc %></td> 
+                    <!----  <td><%= todos[i].createdAt %></td>
+                      <td><%= todos[i].updatedAt %></td> -->
+                      <td><%=moment(todos[i].createdAt).format("MM, DD,YYYY,HH:mm:ss")%></td>   <!-- after install npm i moment-->
+                      <td><%=moment(todos[i].updatedAt).format("MM, DD,YYYY,HH:mm:ss")%></td>
+
+                      <td>
+                        <a class="btn" href="/update-todo?id=<%= todos[i].id %>">EDIT</a>
+
+                        <a class="btn" href="/delete-todo?id=<%= todos[i].id %>">DELETE</a>
+                      </td>
+                    </tr>
+                  <% } %>
+                  
+        </table>
+    </div>
+    <%- include("partials/footer") %>
